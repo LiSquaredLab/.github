@@ -19,7 +19,7 @@ jobs:
       - name: Generate chart
         env:
           GITHUB_ORG: LiSquaredLab
-          ORG_ACTIVITY_TOKEN: ${{ secrets.ORG_ACTIVITY_TOKEN }}
+          ORG_ACTIVITY_TOKEN: ${{ secrets.LiSquaredLab_github }}
         run: python scripts/generate_org_activity.py
       - name: Commit chart
         run: |
