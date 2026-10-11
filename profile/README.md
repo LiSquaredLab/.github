@@ -12,11 +12,11 @@ computational research, and quantitative analysis.
 
 ### Contribution Activity
 
-![LiSquaredLab Activity — Last 30 Days](../assets/org-activity-30d.svg)
+![LiSquaredLab Activity](https://raw.githubusercontent.com/LiSquaredLab/.github/main/assets/org-activity-30d.svg)
 
 **Last 30 days** ·
-[Last 90 days](../assets/org-activity-90d.svg) ·
-[Last 365 days](../assets/org-activity-365d.svg)
+[Last 90 days](https://github.com/LiSquaredLab/.github/blob/main/assets/org-activity-90d.svg) ·
+[Last 365 days](https://github.com/LiSquaredLab/.github/blob/main/assets/org-activity-365d.svg)
 
 <sub>
 Automatically updated daily · Commits, Pull Requests & Issues
