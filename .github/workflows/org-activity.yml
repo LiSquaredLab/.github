@@ -1,3 +1,4 @@
+
 name: Update organization activity chart
 
 on:
@@ -8,23 +9,43 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: organization-activity
+  cancel-in-progress: false
+
 jobs:
   generate:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.x"
-      - name: Generate chart
+          python-version: "3.12"
+
+      - name: Generate activity charts
         env:
           GITHUB_ORG: LiSquaredLab
           ORG_ACTIVITY_TOKEN: ${{ secrets.LiSquaredLab_github }}
         run: python scripts/generate_org_activity.py
-      - name: Commit chart
+
+      - name: Commit generated charts
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/org-activity.svg assets/org-activity.json
-          git diff --cached --quiet || git commit -m "Update organization activity chart"
-          git push
+
+          git add \
+            assets/org-activity.json \
+            assets/org-activity-30d.svg \
+            assets/org-activity-90d.svg \
+            assets/org-activity-365d.svg
+
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: update organization activity charts"
+            git push
+          else
+            echo "No chart changes to commit."
+          fi
